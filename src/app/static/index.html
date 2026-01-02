@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Biblioteca</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <!-- LOGIN -->
+  <section id="view-login">
+    <div class="login-card">
+      <h2>Iniciar sesión</h2>
+      <form id="login-form">
+        <label>Email</label>
+        <input type="email" id="login-email" required />
+
+        <label>Contraseña</label>
+        <input type="password" id="login-password" required />
+
+        <button type="submit" class="btn-primary">Entrar</button>
+        <p id="login-error" class="error-msg" style="display:none;"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- LAYOUT PRINCIPAL -->
+  <div id="app-layout" class="app-layout" style="display:none;">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1>Biblioteca</h1>
+        <p id="sidebar-role"></p>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button onclick="showInicio()" class="nav-btn" id="btn-nav-inicio">Inicio</button>
+        <button onclick="showCatalogo()" class="nav-btn">Catálogo</button>
+        <button onclick="showReservas()" class="nav-btn">Reservas</button>
+        <button onclick="showPrestamos()" class="nav-btn">Préstamos</button>
+
+        <!-- SANCIONES (usuario normal) -->
+        <button onclick="showSanciones()" class="nav-btn">Sanciones</button>
+
+        <!-- ZONA ADMIN -->
+        <button onclick="showUsuarios()" class="nav-btn nav-btn-admin" id="btn-usuarios" style="display:none;">
+          Usuarios
+        </button>
+
+        <!-- NUEVO: SANCIONES ADMIN (ver todas + buscar por email) -->
+        <button onclick="showAdminSanciones()" class="nav-btn nav-btn-admin" id="btn-admin-sanciones" style="display:none;">
+          Sanciones (Admin)
+        </button>
+      </nav>
+
+      <button id="btn-logout" class="nav-btn nav-btn-logout">Cerrar sesión</button>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <h2 id="dashboard-title">Panel</h2>
+          <p class="subtitle">
+            Bienvenido, <span id="user-name"></span><span id="admin-name"></span>
+          </p>
+        </div>
+      </header>
+
+      <section id="view-user" class="view-section" style="display:none;">
+        <div id="contenido-usuario"></div>
+      </section>
+
+      <section id="view-admin" class="view-section" style="display:none;">
+        <div id="contenido-admin">
+          <!-- NUEVO: contenedor para admin sanciones -->
+          <div id="admin-sanciones" style="display:none;"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="/static/js/main.js"></script>
+  <!-- NUEVO: módulo de la vista admin sanciones -->
+  <script type="module" src="/static/js/adminSanciones.js"></script>
+</body>
+</html>
